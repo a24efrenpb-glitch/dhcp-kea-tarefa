@@ -1,0 +1,14 @@
+zone "stark.lan" {
+	type master;
+    file "/etc/bind/db.stark.lan";
+};
+
+zone "lannister.lan" {
+	type primary;
+    file "/etc/bind/db.lannister.lan";
+};
+
+zone "targaryen.lan" {
+	type primary;
+    file "/etc/bind/db.targaryen.lan";
+};
