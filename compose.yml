@@ -40,7 +40,10 @@ services:
     volumes:
       - ./arya/named.conf.options:/etc/bind/named.conf.options
       - ./arya/named.conf.local:/etc/bind/named.conf.local
-      
+      - ./arya/db.stark.lan:/etc/bind/db.stark.lan
+      - ./arya/db.lannister.lan:/etc/bind/db.lannister.lan
+      - ./arya/db.targaryen.lan:/etc/bind/db.targaryen.lan
+
     networks:
       rede_stark:
         ipv4_address: 192.168.10.100
