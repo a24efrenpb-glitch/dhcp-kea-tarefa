@@ -1,11 +1,11 @@
 ;
-; Archivo de zona para stark.lan.
+; Archivo de zona para lannister.lan.
 ;
 $TTL    86400   ; TTL por defecto para todos los registros (1 día)
-$ORIGIN stark.
+$ORIGIN lannister.
 
 ; Registro SOA (Start of Authority)
-@       IN      SOA     arya.stark. admin.stark. (
+@       IN      SOA     arya.lannister.lan. admin.lannister.lan. (
                         2              ; Serial (AAAAMMDDNN)
                         3600           ; Refresh (1 hora)
                         1800           ; Retry (30 minutos)
@@ -14,12 +14,8 @@ $ORIGIN stark.
                         )
 
 ; Registro NS (Name Server)
-@       IN      NS      arya.stark.
+@       IN      NS      arya.lannister.lan.
 
 ; Registros A
 @           IN      A       192.168.10.11
 arya        IN      A       192.168.10.11
-ned         IN      A       192.168.10.10
-router      IN      A       192.168.10.252
-router      IN      A       192.168.10.253
-router      IN      A       192.168.10.254

@@ -1,11 +1,11 @@
 ;
-; Archivo de zona para targayen.lan.
+; Archivo de zona para stark.lan.
 ;
 $TTL    86400   ; TTL por defecto para todos los registros (1 día)
-$ORIGIN targaryen.
+$ORIGIN stark.
 
 ; Registro SOA (Start of Authority)
-@       IN      SOA     arya.targayen. admin.targayen. (
+@       IN      SOA     arya.stark.lan. admin.stark.lan. (
                         2              ; Serial (AAAAMMDDNN)
                         3600           ; Refresh (1 hora)
                         1800           ; Retry (30 minutos)
@@ -14,9 +14,8 @@ $ORIGIN targaryen.
                         )
 
 ; Registro NS (Name Server)
-@       IN      NS      arya.targayen.
+@       IN      NS      arya.stark.lan.
 
 ; Registros A
 @           IN      A       192.168.10.11
 arya        IN      A       192.168.10.11
-router      IN      A       192.168.12.254

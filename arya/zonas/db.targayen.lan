@@ -1,11 +1,11 @@
 ;
-; Archivo de zona para lannister.lan.
+; Archivo de zona para targayen.lan.
 ;
 $TTL    86400   ; TTL por defecto para todos los registros (1 día)
-$ORIGIN lannister.
+$ORIGIN targaryen.
 
 ; Registro SOA (Start of Authority)
-@       IN      SOA     arya.lannister. admin.lannister. (
+@       IN      SOA     arya.targayen.lan. admin.targayen.lan. (
                         2              ; Serial (AAAAMMDDNN)
                         3600           ; Refresh (1 hora)
                         1800           ; Retry (30 minutos)
@@ -14,9 +14,8 @@ $ORIGIN lannister.
                         )
 
 ; Registro NS (Name Server)
-@       IN      NS      arya.lannister.
+@       IN      NS      arya.targayen.lan.
 
 ; Registros A
 @           IN      A       192.168.10.11
 arya        IN      A       192.168.10.11
-router      IN      A       192.168.11.254

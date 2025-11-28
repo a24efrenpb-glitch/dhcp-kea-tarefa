@@ -1,7 +1,17 @@
 {
   "Dhcp4": {
+    "dhcp-ddns": {
+      "enable-updates": true,
+      "server-ip": "127.0.0.1",
+      "server-port": 53001,
+      "max-queue-size": 1024,
+      "ncr-protocol": "UDP",
+      "ncr-format": "JSON"
+    },
     "interfaces-config": {
-      "interfaces": ["eth0"]
+      "interfaces": [
+        "eth0"
+      ]
     },
     "lease-database": {
       "type": "memfile",
@@ -10,12 +20,23 @@
       "lfc-interval": 30,
       "max-row-errors": 100
     },
+    "option-data": [
+      {
+        "name": "domain-name-servers",
+        "data": "192.168.10.11"
+      },
+      {
+        "name": "ntp-servers",
+        "data": "150.214.94.10,150.214.94.5"
+      }
+    ],
     "subnet4": [
       {
         "id": 1,
+        "subnet": "192.168.10.0/24",
         "pools": [
           {
-            "pool": "192.168.10.30 - 192.168.10.32",
+            "pool": "192.168.10.30-192.168.10.32",
             "option-data": [
               {
                 "name": "routers",
@@ -27,17 +48,17 @@
             "pool": "192.168.10.101-192.168.10.230"
           }
         ],
-        "subnet": "192.168.10.0/24",
         "option-data": [
           {
             "name": "routers",
             "data": "192.168.10.254"
           },
           {
-            "name": "domain-name-servers",
-            "data": "192.168.10.100"
+            "name": "domain-name",
+            "data": "stark.lan"
           }
         ],
+        "ddns-qualifying-suffix": "stark.lan",
         "reservations": [
           {
             "hw-address": "02:42:ac:11:00:14",
@@ -53,47 +74,48 @@
       },
       {
         "id": 2,
+        "subnet": "192.168.11.0/24",
         "pools": [
           {
-            "pool": "192.168.11.30 - 192.168.11.132"
+            "pool": "192.168.11.30-192.168.11.132"
           }
         ],
-        "subnet": "192.168.11.0/24",
         "option-data": [
           {
             "name": "routers",
             "data": "192.168.11.254"
           },
           {
-            "name": "domain-name-servers",
-            "data": "192.168.10.100"
+            "name": "domain-name",
+            "data": "lannister.lan"
           }
-          
-        ]
+        ],
+        "ddns-qualifying-suffix": "lannister.lan"
       },
       {
         "id": 3,
+        "subnet": "192.168.12.0/24",
         "pools": [
           {
-            "pool": "192.168.12.30 - 192.168.12.132"
+            "pool": "192.168.12.30-192.168.12.132"
           }
         ],
-        "subnet": "192.168.12.0/24",
         "option-data": [
           {
             "name": "routers",
             "data": "192.168.12.254"
           },
           {
-            "name": "domain-name-servers",
-            "data": "192.168.10.100"
+            "name": "domain-name",
+            "data": "targaryen.lan"
           }
-        ]
+        ],
+        "ddns-qualifying-suffix": "targaryen.lan"
       }
     ],
     "valid-lifetime": 600,
+    "renew-timer": 300,
     "rebind-timer": 500,
-    "authoritative": true,
-    "renew-timer": 300
+    "authoritative": true
   }
 }

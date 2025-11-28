@@ -1,0 +1,41 @@
+key "chave-dhcp" {
+        algorithm hmac-sha256;
+        secret "2bB40jvewWkwjzZHDnNR45yQ3mFBvsTlNkSHwUDeYUU=";
+};
+
+zone "stark.lan" {
+	type master;
+    file "/etc/bind/db.stark.lan";
+    allow-update{"chave-dhcp";};
+};
+
+zone "lannister.lan" {
+	type primary;
+    file "/etc/bind/db.lannister.lan";
+    allow-update{"chave-dhcp";};
+};
+
+zone "targaryen.lan" {
+	type primary;
+    file "/etc/bind/db.targaryen.lan";
+    allow-update{"chave-dhcp";};
+};
+
+zone "10.168.192.in-addr.arpa" {
+    type primary;
+    file "zonas/db.10";
+    allow-update {key "chave-xogo-de-tronos";};
+};
+
+zone "11.168.192.in-addr.arpa" {
+    type primary;
+    file "zonas/db.11";
+    allow-update {key "chave-xogo-de-tronos";};
+};
+
+zone "12.168.192.in-addr.arpa" {
+    type primary;
+    file "zonas/db.12";
+    allow-update {key "chave-xogo-de-tronos";};
+};
+

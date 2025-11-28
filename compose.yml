@@ -29,6 +29,8 @@ services:
     entrypoint: "bash -c /sbin/entrypoint.sh"
     volumes:
       - ./ned/dhcp4.json:/etc/kea/kea-dhcp4.conf
+      - ./ned/dhcpddns.json:/etc/kea/kea-dhcpddns.conf
+      - ./ned/kea.log:/var/log/kea/kea.log
       # - ./ned/dhcp:/var/lib/kea
       - ./ned/entrypoint.sh:/sbin/entrypoint.sh
   
@@ -40,13 +42,11 @@ services:
     volumes:
       - ./arya/named.conf.options:/etc/bind/named.conf.options
       - ./arya/named.conf.local:/etc/bind/named.conf.local
-      - ./arya/db.stark.lan:/etc/bind/db.stark.lan
-      - ./arya/db.lannister.lan:/etc/bind/db.lannister.lan
-      - ./arya/db.targaryen.lan:/etc/bind/db.targaryen.lan
+      - ./arya/zonas:/var/cache/bind/zonas
 
     networks:
       rede_stark:
-        ipv4_address: 192.168.10.100
+        ipv4_address: 192.168.10.11
     dns: 127.0.0.1
 
 
@@ -101,22 +101,7 @@ services:
       - NET_ADMIN
     command: >
       sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
-  cliente5:
-    build: ./cliente
-    hostname: daenerys
-    depends_on:
-      - ned
-      - cliente1
-      - cliente2
-      - cliente3
-      - cliente4
-    networks:
-      rede_stark:
-        mac_address: 02:42:ac:11:00:14
-    cap_add:
-      - NET_ADMIN
-    command: >
-      sh -c "sleep 10 && ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
+  
   cliente10:
     build: ./cliente
     hostname: cliente10
@@ -130,6 +115,18 @@ services:
     command: >
       sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
 
+cliente20:
+    build: ./cliente
+    hostname: cliente20
+    depends_on:
+      - ned
+    networks:
+      rede_lannister:
+        mac_address: 02:42:ac:11:20:14
+    cap_add:
+      - NET_ADMIN
+    command: >
+      sh -c "ip addr flush dev eth0 && dhclient -v eth0 && sleep infinity"
 networks:
   rede_stark:
     driver: bridge
